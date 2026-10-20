@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELESTE English School — Units 7–8 Quiz</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--pale:#eff6ff;--ink:#1f2937;--muted:#64748b;--line:#dbe3ef;--green:#15803d;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#172554,#1d4ed8);color:white;padding:28px 18px}
+.wrap{max-width:980px;margin:auto;padding:0 16px}header h1{margin:0;font-size:clamp(1.5rem,4vw,2.25rem)}header p{margin:5px 0 0;color:#dbeafe}
+main{padding:22px 0 50px}.instructions{background:white;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:18px}
+section{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 3px 12px #0f172a08}
+h2{font-size:1.15rem;margin:0 0 12px;color:var(--navy)}.sub{color:var(--muted);font-size:.92rem;margin-top:-6px}
+.q{padding:11px 0;border-top:1px solid #edf1f7}.q:first-of-type{border-top:0}.prompt{margin-bottom:7px}
+input[type=text],select,textarea{font:inherit;border:1px solid #cbd5e1;border-radius:8px;padding:7px 10px;background:white;max-width:100%}
+input[type=text]{width:min(100%,420px)}.inline{width:160px!important;display:inline-block;margin:3px 2px}
+select{min-width:135px}.choice{display:flex;gap:9px;align-items:flex-start;margin:7px 0}.choice input{margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.btn{border:0;border-radius:10px;padding:11px 17px;font:600 1rem inherit;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#e2e8f0;color:#0f172a}
+#results{display:none;background:white;border:2px solid var(--blue);border-radius:14px;padding:20px;margin-top:20px}#score{font-size:1.5rem;font-weight:800;color:var(--navy)}.feedback{margin:10px 0;padding:10px 12px;border-radius:8px;background:#f8fafc}.correct{color:var(--green);font-weight:700}.incorrect{color:var(--red);font-weight:700}
+article{border-left:4px solid #93c5fd;padding:12px 16px;background:#f8fbff;border-radius:0 10px 10px 0}
+.small{font-size:.9rem;color:var(--muted)}footer{text-align:center;color:var(--muted);padding:18px}
+@media(max-width:600px){section{padding:15px}.inline{width:125px!important}input[type=text]{width:100%}}
+</style>
+<script>
+/* Flexible answer matching: ignore case/punctuation, accept common contractions and number words. */
+function celesteNorm(value){
+ let s=String(value??'').toLowerCase().replace(/[’‘]/g,"'").trim();
+ const contractions=[[/\bcan't\b/g,'cannot'],[/\bcannot\b/g,'cannot'],[/\bwon't\b/g,'will not'],[/\bdon't\b/g,'do not'],[/\bdoesn't\b/g,'does not'],[/\bdidn't\b/g,'did not'],[/\bisn't\b/g,'is not'],[/\baren't\b/g,'are not'],[/\bwasn't\b/g,'was not'],[/\bweren't\b/g,'were not'],[/\bhaven't\b/g,'have not'],[/\bhasn't\b/g,'has not'],[/\bhadn't\b/g,'had not'],[/\bwouldn't\b/g,'would not'],[/\bshouldn't\b/g,'should not'],[/\bcouldn't\b/g,'could not'],[/\bit's\b/g,'it is'],[/\bthey're\b/g,'they are'],[/\bwe're\b/g,'we are'],[/\byou're\b/g,'you are'],[/\bI'm\b/gi,'i am'],[/\bhe's\b/g,'he is'],[/\bshe's\b/g,'she is'],[/\bthat's\b/g,'that is'],[/\bthere's\b/g,'there is'],[/\bwhat's\b/g,'what is'],[/\bwho's\b/g,'who is'],[/\bwhere's\b/g,'where is'],[/\bhow's\b/g,'how is'],[/\bthey've\b/g,'they have'],[/\bwe've\b/g,'we have'],[/\byou've\b/g,'you have'],[/\bI've\b/g,'i have'],[/\bI'll\b/g,'i will'],[/\byou'll\b/g,'you will'],[/\bwe'll\b/g,'we will'],[/\bthey'll\b/g,'they will'],[/\bhe'll\b/g,'he will'],[/\bshe'll\b/g,'she will']];
+ for(const [pattern,replacement] of contractions)s=s.replace(pattern,replacement);
+ const nums={zero:'0',oh:'0',one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',seven:'7',eight:'8',nine:'9',ten:'10',eleven:'11',twelve:'12',thirteen:'13',fourteen:'14',fifteen:'15',sixteen:'16',seventeen:'17',eighteen:'18',nineteen:'19',twenty:'20',thirty:'30',forty:'40',fifty:'50',sixty:'60',seventy:'70',eighty:'80',ninety:'90'};
+ s=s.replace(/\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\b/g,w=>nums[w]);
+ return s.replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+}
+</script>
+</head>
+<body>
+<div class="combined-nav"><a href="../index.html">← All units</a></div>
+<header><div class="wrap"><h1>CELESTE English School</h1><p>Units 7–8 Quiz · Interactive exam</p></div></header>
+<main class="wrap">
+<div class="instructions"><strong>Instructions</strong><br>Answer every section. Section A audio can be played a maximum of <strong>two times</strong>. Your score and answer feedback will appear when you submit. Section B onward is text-based.</div>
+<form id="exam">
+<section><h2>A. Listening — Julia's New House</h2><p class="sub">Listen and circle the correct words.</p>
+<label class="small" for="audioFile">Upload the listening audio file:</label><br><input id="audioFile" type="file" accept="audio/*"><audio id="audio" controlsList="nodownload noplaybackrate" style="display:none;width:100%;margin-top:12px"></audio><p id="playCount" class="small">Audio has not been uploaded. Once uploaded, it can be played twice.</p>
+<div class="q"><div class="prompt">1. There are ___ bedrooms.</div><label class="choice"><input type="radio" name="a1" value="no"> no</label><label class="choice"><input type="radio" name="a1" value="two"> two</label><label class="choice"><input type="radio" name="a1" value="three"> three</label></div>
+<div class="q"><div class="prompt">2. There are some chairs in the ___.</div><label class="choice"><input type="radio" name="a2" value="dining room"> dining room</label><label class="choice"><input type="radio" name="a2" value="kitchen"> kitchen</label><label class="choice"><input type="radio" name="a2" value="living room"> living room</label></div>
+<div class="q"><div class="prompt">3. Julia needs a ___ for the kitchen.</div><label class="choice"><input type="radio" name="a3" value="microwave oven"> microwave oven</label><label class="choice"><input type="radio" name="a3" value="refrigerator"> refrigerator</label><label class="choice"><input type="radio" name="a3" value="stove"> stove</label></div>
+</section>
+<section><h2>B. Simple Present</h2><p class="sub">Complete the conversations. Use the simple present of the verbs.</p>
+<div class="q">1. A: <input class="inline" type="text" name="b1a" aria-label="B1 first blank"> you <input class="inline" type="text" name="b1b" aria-label="B1 second blank"> (live) alone?<br>B: No, I <input class="inline" type="text" name="b1c" aria-label="B1 third blank">.</div>
+<div class="q">2. A: <input class="inline" type="text" name="b2a" aria-label="B2 first blank"> your apartment building <input class="inline" type="text" name="b2b" aria-label="B2 second blank"> (have) an elevator?<br>B: Yes, it <input class="inline" type="text" name="b2c" aria-label="B2 third blank">.</div>
+<div class="q">3. A: <input class="inline" type="text" name="b3a" aria-label="B3 first blank"> the bedrooms <input class="inline" type="text" name="b3b" aria-label="B3 second blank"> (have) closets?<br>B: No, they <input class="inline" type="text" name="b3c" aria-label="B3 third blank">.</div>
+</section>
+<section><h2>C. Unscramble the Sentences</h2><p class="sub">Put the words in the correct order.</p>
+<div class="q"><strong>Example:</strong> (kitchen / some / in / chairs / there / are / the)<br>There are some chairs in the kitchen.</div>
+<div class="q">1. (the / there / isn't / a mirror / in / bedroom)<br><input type="text" name="c1" placeholder="Write the complete sentence"></div>
+<div class="q">2. (no / pictures / the hall / there are / in)<br><input type="text" name="c2" placeholder="Write the complete sentence"></div>
+<div class="q">3. (in / there aren't / any / the / curtains / dining room)<br><input type="text" name="c3" placeholder="Write the complete sentence"></div>
+</section>
+<section><h2>D. Circle the Correct Words</h2>
+<div class="q">1. A <select name="d1"><option value="">Choose...</option><option>lawyer</option><option>security guard</option><option>doctor</option></select> wears a uniform.</div>
+<div class="q">2. A <select name="d2"><option value="">Choose...</option><option>nurse</option><option>pilot</option><option>salesperson</option></select> works in a hospital.</div>
+<div class="q">3. A <select name="d3"><option value="">Choose...</option><option>cook</option><option>receptionist</option><option>singer</option></select> talks to people.</div>
+<div class="q">4. A <select name="d4"><option value="">Choose...</option><option>judge</option><option>musician</option><option>police officer</option></select> sits all day.</div>
+</section>
+<section><h2>E. Write the Questions</h2><p class="sub">Write a question that matches each answer.</p>
+<div class="q"><strong>Example:</strong><br>A: What do they do?<br>B: They're nurses.</div>
+<div class="q">1. B: I work at a restaurant.<br>A: <input type="text" name="e1" placeholder="Write the question"></div>
+<div class="q">2. B: He's a firefighter.<br>A: <input type="text" name="e2" placeholder="Write the question"></div>
+<div class="q">3. B: They hate their jobs.<br>A: <input type="text" name="e3" placeholder="Write the question"></div>
+</section>
+<section><h2>F. Be or Have</h2><p class="sub">Complete the conversations with be or have and the adjectives in parentheses.</p>
+<div class="q">1. A: A singer <input class="inline" type="text" name="f1a" aria-label="F1 first blank"> (exciting) job.<br>B: I disagree. I think a singer's job <input class="inline" type="text" name="f1b" aria-label="F1 second blank"> (boring).</div>
+<div class="q">2. A: A flight attendant <input class="inline" type="text" name="f2a" aria-label="F2 first blank"> (dangerous) job.<br>B: I agree. It <input class="inline" type="text" name="f2b" aria-label="F2 second blank"> (stressful), too.</div>
+<div class="q">3. A: A cashier's job <input class="inline" type="text" name="f3a" aria-label="F3 first blank"> (easy).<br>B: I disagree. A cashier <input class="inline" type="text" name="f3b" aria-label="F3 second blank"> (difficult) job.</div>
+</section>
+<section><h2>G. Reading Comprehension</h2><p>Read the interview. Then check <strong>three</strong> true statements.</p>
+<article><h3>FRED — Interview</h3>
+<p><strong>REPORTER:</strong> Fred, where do you work?</p><p><strong>FRED:</strong> Well, I have two jobs. First, I work in a hospital.</p>
+<p><strong>REPORTER:</strong> Really? What do you do there?</p><p><strong>FRED:</strong> I'm a nurse. I take care of patients.</p>
+<p><strong>REPORTER:</strong> Do you like it?</p><p><strong>FRED:</strong> Yes. My salary isn't great, but that's OK. I like my patients, so I'm happy.</p>
+<p><strong>REPORTER:</strong> And where else do you work?</p><p><strong>FRED:</strong> I work in a restaurant at night.</p>
+<p><strong>REPORTER:</strong> Are you a waiter?</p><p><strong>FRED:</strong> No, actually I play the piano.</p>
+<p><strong>REPORTER:</strong> How do you like it?</p><p><strong>FRED:</strong> It's an interesting job, but I work a lot of hours. I get tired!</p></article>
+<div id="gOptions">
+<label class="choice"><input type="checkbox" name="g" value="doctor"> Fred is a doctor in a hospital.</label>
+<label class="choice"><input type="checkbox" name="g" value="money"> Fred makes a lot of money.</label>
+<label class="choice"><input type="checkbox" name="g" value="musician"> Fred is a musician in a restaurant.</label>
+<label class="choice"><input type="checkbox" name="g" value="boring"> Fred's jobs are boring.</label>
+<label class="choice"><input type="checkbox" name="g" value="likes"> Fred likes his jobs.</label>
+<label class="choice"><input type="checkbox" name="g" value="night"> Fred works at night.</label></div>
+<p class="small">Select exactly three statements.</p>
+</section>
+<div class="actions"><button class="btn primary" type="submit">Submit Exam &amp; Grade</button><button class="btn secondary" type="button" id="resetBtn">Reset Answers</button></div>
+</form>
+<div id="results" aria-live="polite"><h2>Exam Results</h2><div id="score"></div><p id="summary"></p><div id="feedback"></div><button class="btn primary" type="button" id="downloadBtn">Download My Results (.txt)</button></div>
+</main><footer>CELESTE English School · Units 7–8 Quiz</footer>
+<script>
+const audioInput=document.getElementById('audioFile'), audio=document.getElementById('audio'), playCount=document.getElementById('playCount');
+let plays=0, audioUrl=null, playingAllowed=false;
+audioInput.addEventListener('change',()=>{const file=audioInput.files[0];if(!file)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(file);audio.src=audioUrl;audio.style.display='block';plays=0;playingAllowed=true;playCount.textContent='Plays used: 0 / 2';audio.load();});
+audio.addEventListener('play',()=>{if(!playingAllowed||plays>=2){audio.pause();return;}plays++;playCount.textContent='Plays used: '+plays+' / 2';if(plays>=2){playingAllowed=false;audio.addEventListener('ended',()=>{audio.controls=false;},{once:true});}});
+audio.addEventListener('seeking',()=>{if(audio.currentTime>0)audio.currentTime=0;});
+audio.addEventListener('ended',()=>{if(plays>=2){audio.pause();audio.controls=false;playCount.textContent='Maximum two plays reached.';}});
+document.querySelectorAll('input[name="g"]').forEach(cb=>cb.addEventListener('change',()=>{const checked=[...document.querySelectorAll('input[name="g"]:checked')];if(checked.length>3){cb.checked=false;alert('Please select exactly three statements.');}}));
+const answerKey={
+'A1':'three','A2':'living room','A3':'microwave oven',
+'B1a':'Do','B1b':'live','B1c':"don't",
+'B2a':'Does','B2b':'have','B2c':'does',
+'B3a':'Do','B3b':'have','B3c':"don't",
+'C1':"There isn't a mirror in the bedroom.",'C2':'There are no pictures in the hall.','C3':"There aren't any curtains in the dining room.",
+'D1':'security guard','D2':'nurse','D3':'receptionist','D4':'judge',
+'E1':'Where do you work?','E2':'What does he do?','E3':'How do they like their jobs?',
+'F1a':'has an exciting','F1b':'is boring','F2a':'has a dangerous','F2b':'is stressful','F3a':'is easy','F3b':'has a difficult',
+'G':['musician','likes','night']
+};
+const norm=s=>celesteNorm(s);
+const fields=['A1','A2','A3','B1a','B1b','B1c','B2a','B2b','B2c','B3a','B3b','B3c','C1','C2','C3','D1','D2','D3','D4','E1','E2','E3','F1a','F1b','F2a','F2b','F3a','F3b'];
+let latestReport='';
+document.getElementById('exam').addEventListener('submit',e=>{
+ e.preventDefault();let total=fields.length+3,earned=0,lines=[];
+ const labelMap={A1:'A1',A2:'A2',A3:'A3',B1a:'B1 first blank',B1b:'B1 second blank',B1c:'B1 third blank',B2a:'B2 first blank',B2b:'B2 second blank',B2c:'B2 third blank',B3a:'B3 first blank',B3b:'B3 second blank',B3c:'B3 third blank',C1:'C1',C2:'C2',C3:'C3',D1:'D1',D2:'D2',D3:'D3',D4:'D4',E1:'E1',E2:'E2',E3:'E3',F1a:'F1 first blank',F1b:'F1 second blank',F2a:'F2 first blank',F2b:'F2 second blank',F3a:'F3 first blank',F3b:'F3 second blank'};
+ const resultItems=[];
+ fields.forEach(key=>{
+  let el=document.querySelector('[name="'+key+'"]');let val='';
+  if(key[0]==='A'){val=document.querySelector('input[name="'+key+'"]:checked')?.value||'';}
+  else val=el?.value||'';
+  let ok=norm(val)===norm(answerKey[key]);
+  // Accept common apostrophe and minor question punctuation variations.
+  if(key[0]==='E'&&key==='E1')ok=/^where do you work$/.test(norm(val));
+  if(key[0]==='E'&&key==='E2')ok=/^what does he do$/.test(norm(val));
+  if(key[0]==='E'&&key==='E3')ok=/^how do they like their jobs$/.test(norm(val));
+  if(ok)earned++;
+  const shown=val||'(blank)';
+  resultItems.push({label:labelMap[key]||key,val:shown,answer:answerKey[key],ok});
+ });
+ const gs=[...document.querySelectorAll('input[name="g"]:checked')].map(x=>x.value);
+ const gCorrect=gs.length===3&&['musician','likes','night'].every(x=>gs.includes(x));
+ if(gCorrect)earned+=3;
+ resultItems.forEach(r=>lines.push(`${r.label}: ${r.val} | ${r.ok?'Correct':'Incorrect'} | Correct answer: ${r.answer}`));
+ lines.push('G selected: '+(gs.join(', ')||'(none)')+' | '+(gCorrect?'Correct':'Incorrect')+' | Correct statements: Fred is a musician in a restaurant; Fred likes his jobs; Fred works at night.');
+ const pct=Math.round(earned/total*100);
+ document.getElementById('score').textContent=`${earned} / ${total} (${pct}%)`;
+ document.getElementById('summary').textContent=`You earned ${earned} out of ${total} points. Section G is scored only when exactly the three correct statements are selected.`;
+ document.getElementById('feedback').innerHTML='';
+ resultItems.forEach(r=>{const div=document.createElement('div');div.className='feedback';div.innerHTML=`<strong>${r.label}</strong>: ${escapeHtml(r.val)} — <span class="${r.ok?'correct':'incorrect'}">${r.ok?'Correct':'Incorrect'}</span><br><span class="small">Correct answer: ${escapeHtml(r.answer)}</span>`;document.getElementById('feedback').appendChild(div);});
+ const gd=document.createElement('div');gd.className='feedback';gd.innerHTML=`<strong>Section G</strong> — <span class="${gCorrect?'correct':'incorrect'}">${gCorrect?'Correct':'Incorrect'}</span><br><span class="small">Correct statements: Fred is a musician in a restaurant; Fred likes his jobs; Fred works at night.</span>`;document.getElementById('feedback').appendChild(gd);
+ document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});
+ latestReport=`CELESTE English School — Units 7–8 Quiz\nScore: ${earned}/${total} (${pct}%)\n\n${lines.join('\n')}\n`;
+});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.getElementById('downloadBtn').addEventListener('click',()=>{const blob=new Blob([latestReport],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='units-7-8-quiz-results.txt';a.click();URL.revokeObjectURL(a.href);});
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Reset all answers and start again?')){document.getElementById('exam').reset();document.getElementById('results').style.display='none';plays=0;playingAllowed=false;audio.pause();audio.removeAttribute('src');audio.style.display='none';playCount.textContent='Audio has not been uploaded. Once uploaded, it can be played twice.';latestReport='';}});
+</script><style>.combined-nav{padding:9px 16px;background:#fff;border-bottom:1px solid #ddd;font:700 14px system-ui}.combined-nav a{color:#8e302d;text-decoration:none}.celeste-print-result{display:flex;align-items:center;justify-content:center;width:max-content;max-width:100%;margin:18px auto;padding:12px 18px;border:0;border-radius:9px;background:#8e302d;color:#fff;font-weight:800;cursor:pointer}@media print{.combined-nav,.celeste-print-result,button[type=submit],input[type=file],audio{display:none!important}body{background:#fff!important}}</style><script>document.addEventListener('DOMContentLoaded',function(){var a=document.querySelector('audio');if(a&&!a.getAttribute('src')){a.src='../audio/U7-8_A1.mp3';a.load();}var b=document.createElement('button');b.type='button';b.className='celeste-print-result';b.textContent='Print as PDF';b.hidden=true;b.onclick=function(){window.print()};document.body.appendChild(b);var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){setTimeout(function(){b.hidden=false},200)});});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPath = '../audio/U7-8_A1.mp3';
+  const audio = document.getElementById('listeningAudio') || document.getElementById('audio');
+  if (audio) {
+    audio.src = audioPath;
+    audio.load();
+    audio.style.display = 'block';
+    audio.controls = !document.getElementById('playAudio');
+    const playBtn = document.getElementById('playAudio');
+    const status = document.getElementById('audioStatus') || document.getElementById('playCount');
+    if (playBtn) { playBtn.disabled = false; playBtn.textContent = '▶ Play audio (2 plays left)'; }
+    if (status) status.textContent = 'Audio path: ../audio/U7-8_A1.mp3';
+  }
+});
+</script>
+<style>
+/* CELESTE submitted-result panel */
+#result,#results{box-sizing:border-box;max-width:1000px;margin:28px auto;padding:clamp(20px,4vw,36px);background:#fff;border:1px solid #e6e8ee;border-radius:18px;box-shadow:0 12px 36px rgba(25,35,55,.09);color:#202638}
+#result h2,#results h2{margin:0 0 12px;color:#8e302d;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
+#scoreHeading,#score{display:block;margin:12px 0 20px;font-size:1.2rem;font-weight:800;color:#202638}
+#resultGrid,#feedback{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+#resultGrid .result-item,#feedback .feedback{box-sizing:border-box;padding:15px;border:1px solid #f0b7b7;border-left:5px solid #c94a4a;border-radius:12px;background:#fff8f8;line-height:1.55;overflow-wrap:anywhere}
+#resultGrid .result-item strong,#feedback .feedback strong{display:block;margin-bottom:5px;color:#9f2f2f}
+.celeste-print-result{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:22px auto 0;padding:13px 22px;border:0;border-radius:10px;background:#8e302d;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(142,48,45,.2)}
+.celeste-print-result:hover{background:#702421}
+@media(max-width:600px){#result,#results{margin:16px 8px;padding:18px;border-radius:14px}#resultGrid,#feedback{grid-template-columns:1fr}.celeste-print-result{width:max-content;max-width:100%;margin-left:auto;margin-right:auto}}
+@media print{body{background:#fff!important}#result,#results{max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none}#resultGrid,#feedback{display:block}#resultGrid .result-item,#feedback .feedback{break-inside:avoid;margin:0 0 10px}.combined-nav,.celeste-print-result,button,input[type=file],audio,footer{display:none!important}}
+</style>
+<script>
+(function(){
+ function setupResultView(){
+  const result=document.getElementById('result')||document.getElementById('results');
+  if(!result)return;
+  const heading=result.querySelector('h2');if(heading && heading.textContent!=='Exam submitted')heading.textContent='Exam submitted';
+  function cleanAndStyle(){
+   // Keep only incorrect / unanswered items; never reveal the answer key.
+   const grid=document.getElementById('resultGrid');
+   if(grid){[...grid.children].forEach(card=>{
+    const label=card.querySelector('strong');
+    if(label && /·\s*Correct\s*$/.test(label.textContent) && !/Incorrect/.test(label.textContent)){card.remove();return;}
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+   });}
+   const feedback=document.getElementById('feedback');
+   if(feedback){[...feedback.children].forEach(card=>{
+    if(card.querySelector('.correct')){card.remove();return;}
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.innerHTML=card.innerHTML.replace(/<br\s*\/?><span[^>]*>\s*Correct answer:[\s\S]*?<\/span>/gi,'');
+   });}
+   // Remove text-response downloads and secondary result actions.
+   result.querySelectorAll('#downloadBtn,button[id="editBtn"]').forEach(el=>el.remove());
+   // Some older pages put result actions in a shared action row.
+   result.querySelectorAll('.bottom-actions').forEach(row=>{if(!row.querySelector('button:not(.celeste-print-result)'))row.remove();});
+   // Keep exactly one PDF button in the submitted-result panel.
+   document.querySelectorAll('body > .celeste-print-result').forEach(el=>el.remove());
+   let printBtn=result.querySelector('.celeste-print-result');
+   if(!printBtn){printBtn=document.createElement('button');printBtn.type='button';printBtn.className='celeste-print-result';printBtn.textContent='Print as PDF';printBtn.addEventListener('click',()=>window.print());result.appendChild(printBtn);}
+   else {if(printBtn.textContent!=='Print as PDF')printBtn.textContent='Print as PDF';printBtn.hidden=false;}
+  }
+  // Wait until the original grading script has rendered its result.
+  const form=document.querySelector('form');if(form)form.addEventListener('submit',()=>setTimeout(cleanAndStyle,80));
+  const observer=new MutationObserver(()=>{if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();});
+  observer.observe(result,{childList:true,subtree:true});
+  if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupResultView);else setupResultView();
+})();
+</script>
+</body></html>

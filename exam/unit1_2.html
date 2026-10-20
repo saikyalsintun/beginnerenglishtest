@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CELESTE English School — English Exam</title>
+<style>
+:root{--ink:#1e293b;--muted:#64748b;--line:#e2e8f0;--paper:#fff;--bg:#f4f7fb;--blue:#2457d6;--blue2:#eaf0ff;--green:#087f5b;--amber:#a16207}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#142b63,#2457d6);color:#fff;padding:28px 18px 25px}
+.head{max-width:1000px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.76rem;opacity:.8;font-weight:700}
+h1{font-size:clamp(1.6rem,4vw,2.35rem);margin:.35rem 0}.sub{opacity:.88;margin:0}
+main{max-width:1000px;margin:22px auto;padding:0 14px 60px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:16px}
+.progress-wrap{flex:1;min-width:220px}.progress-label{display:flex;justify-content:space-between;font-size:.86rem;color:var(--muted);margin-bottom:6px}.progress{height:8px;border-radius:99px;background:#dce4f2;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+button,.file-label{border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:650;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}button:disabled{opacity:.45;cursor:not-allowed}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3vw,26px);margin:15px 0;box-shadow:0 4px 18px #0f172a08}
+.section-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}.letter{flex:0 0 42px;height:42px;border-radius:12px;background:var(--blue2);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:1.15rem}
+h2{font-size:1.18rem;margin:0 0 3px} .hint{color:var(--muted);font-size:.9rem;margin:0}
+.media-panel{background:#f8fafc;border:1px dashed #b8c5da;border-radius:12px;padding:16px;margin:12px 0 18px}
+.media-title{font-weight:750;margin-bottom:7px}.media-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.status{font-size:.88rem;color:var(--muted)}input[type=file]{max-width:100%;font:inherit;font-size:.9rem}
+.q{padding:15px 0;border-top:1px solid #edf1f6}.q:first-of-type{border-top:0}.qline{font-weight:600;margin-bottom:9px}.num{display:inline-block;color:var(--muted);min-width:28px;font-weight:750}
+.options{display:grid;gap:8px;margin-left:28px}.option{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;font-weight:400}.option:has(input:checked){border-color:var(--blue);background:#f2f6ff}.option input{margin-top:5px;accent-color:var(--blue)}
+.blank{display:inline-block;vertical-align:baseline;min-width:145px;max-width:100%;width:min(240px,100%);border:0;border-bottom:2px solid #8da2c5;border-radius:0;padding:4px 6px;background:#f8fafc;color:var(--ink);font:inherit;outline:none}.blank:focus{border-bottom-color:var(--blue);background:#eff4ff}.blank.short{width:135px;min-width:100px}.dialogue{font-size:1rem;line-height:2.25}.speaker{font-weight:800;color:#334e83;display:inline-block;min-width:104px}.dialogue-line{margin:4px 0}.inline-select{display:inline-block;vertical-align:middle;border:1px solid #aebed6;border-radius:8px;background:#f8fafc;padding:4px 7px;font:inherit;color:var(--ink);max-width:100%}
+.image-preview{display:none;max-width:100%;max-height:420px;object-fit:contain;border-radius:10px;margin-top:12px;background:#fff}
+.note{font-size:.88rem;color:var(--muted)}.bottom-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin:20px 0}.result{display:none}.result h2{margin-bottom:10px}.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.result-item{background:#f8fafc;border:1px solid var(--line);padding:12px;border-radius:10px;overflow-wrap:anywhere}.result-item strong{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media(max-width:600px){.speaker{min-width:72px}.blank{min-width:110px;width:150px}.card{border-radius:12px}.options{margin-left:0}.qline .num{min-width:25px}}
+@media print{header{background:#fff;color:#111;padding:10px}.toolbar,.media-controls,.bottom-actions,footer{display:none!important}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
+</style>
+<script>
+/* Flexible answer matching: ignore case/punctuation, accept common contractions and number words. */
+function celesteNorm(value){
+ let s=String(value??'').toLowerCase().replace(/[’‘]/g,"'").trim();
+ const contractions=[[/\bcan't\b/g,'cannot'],[/\bcannot\b/g,'cannot'],[/\bwon't\b/g,'will not'],[/\bdon't\b/g,'do not'],[/\bdoesn't\b/g,'does not'],[/\bdidn't\b/g,'did not'],[/\bisn't\b/g,'is not'],[/\baren't\b/g,'are not'],[/\bwasn't\b/g,'was not'],[/\bweren't\b/g,'were not'],[/\bhaven't\b/g,'have not'],[/\bhasn't\b/g,'has not'],[/\bhadn't\b/g,'had not'],[/\bwouldn't\b/g,'would not'],[/\bshouldn't\b/g,'should not'],[/\bcouldn't\b/g,'could not'],[/\bit's\b/g,'it is'],[/\bthey're\b/g,'they are'],[/\bwe're\b/g,'we are'],[/\byou're\b/g,'you are'],[/\bI'm\b/gi,'i am'],[/\bhe's\b/g,'he is'],[/\bshe's\b/g,'she is'],[/\bthat's\b/g,'that is'],[/\bthere's\b/g,'there is'],[/\bwhat's\b/g,'what is'],[/\bwho's\b/g,'who is'],[/\bwhere's\b/g,'where is'],[/\bhow's\b/g,'how is'],[/\bthey've\b/g,'they have'],[/\bwe've\b/g,'we have'],[/\byou've\b/g,'you have'],[/\bI've\b/g,'i have'],[/\bI'll\b/g,'i will'],[/\byou'll\b/g,'you will'],[/\bwe'll\b/g,'we will'],[/\bthey'll\b/g,'they will'],[/\bhe'll\b/g,'he will'],[/\bshe'll\b/g,'she will']];
+ for(const [pattern,replacement] of contractions)s=s.replace(pattern,replacement);
+ const nums={zero:'0',oh:'0',one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',seven:'7',eight:'8',nine:'9',ten:'10',eleven:'11',twelve:'12',thirteen:'13',fourteen:'14',fifteen:'15',sixteen:'16',seventeen:'17',eighteen:'18',nineteen:'19',twenty:'20',thirty:'30',forty:'40',fifty:'50',sixty:'60',seventy:'70',eighty:'80',ninety:'90'};
+ s=s.replace(/\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\b/g,w=>nums[w]);
+ return s.replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+}
+</script>
+</head>
+<body>
+<div class="combined-nav"><a href="../index.html">← All units</a></div>
+<header><div class="head"><div class="eyebrow">CELESTE English School</div><h1>English Exam</h1><p class="sub">Personal information · Greetings · Classroom objects · Prepositions</p></div></header>
+<main>
+<div class="toolbar">
+  <div class="progress-wrap"><div class="progress-label"><span>Exam progress</span><span id="progressText">0 of 25 responses</span></div><div class="progress"><span id="progressBar"></span></div></div>
+  <button class="secondary" type="button" onclick="window.print()">Print exam</button>
+</div>
+<form id="examForm">
+<section class="card" id="sectionA">
+<div class="section-head"><div class="letter">A</div><div><h2>Listen to the conversations</h2><p class="hint">Check (✓) the correct answers. The audio can be started only twice.</p></div></div>
+<div class="media-panel">
+  <div class="media-title">Listening audio — upload your audio file</div>
+  <input type="file" id="audioUpload" accept="audio/*" aria-label="Upload listening audio">
+  <div class="media-controls" style="margin-top:12px"><button type="button" class="primary" id="playAudio" disabled>▶ Play audio (2 plays left)</button><span class="status" id="audioStatus">No audio uploaded yet.</span></div>
+  <audio id="listeningAudio" preload="metadata"></audio>
+  <p class="note">Playback starts from the beginning each time. Seeking and replay controls are not provided. Each complete play counts as one of the two allowed plays.</p>
+</div>
+<div class="q"><div class="qline"><span class="num">1.</span> His first name is ———.</div><div class="options">
+<label class="option"><input type="radio" name="a1" value="Z.A.C.K.A.R.Y"> Z.A.C.K.A.R.Y</label>
+<label class="option"><input type="radio" name="a1" value="Z.A.C.H.A.R.Y"> Z.A.C.H.A.R.Y</label>
+<label class="option"><input type="radio" name="a1" value="Z.A.C.H.E.R.Y"> Z.A.C.H.E.R.Y</label></div></div>
+<div class="q"><div class="qline"><span class="num">2.</span> Sue's phone number is ———.</div><div class="options">
+<label class="option"><input type="radio" name="a2" value="718-555-8781"> 718-555-8781</label>
+<label class="option"><input type="radio" name="a2" value="718-555-8881"> 718-555-8881</label>
+<label class="option"><input type="radio" name="a2" value="718-555-8871"> 718-555-8871</label></div></div>
+<div class="q"><div class="qline"><span class="num">3.</span> The ——— is in his bag.</div><div class="options">
+<label class="option"><input type="radio" name="a3" value="CD player"> CD player</label>
+<label class="option"><input type="radio" name="a3" value="cell phone"> cell phone</label>
+<label class="option"><input type="radio" name="a3" value="camera"> camera</label></div></div>
+<div class="q"><div class="qline"><span class="num">4.</span> The man's wallet is ———.</div><div class="options">
+<label class="option"><input type="radio" name="a4" value="Under his desk"> Under his desk</label>
+<label class="option"><input type="radio" name="a4" value="in his pocket"> in his pocket</label>
+<label class="option"><input type="radio" name="a4" value="In his book bag"> In his book bag</label></div></div>
+</section>
+<section class="card" id="sectionB">
+<div class="section-head"><div class="letter">B</div><div><h2>Complete the conversation</h2><p class="hint">Use <em>my, your, his</em> or <em>her</em>. Type each answer directly in the blank.</p></div></div>
+<div class="dialogue">
+<div class="dialogue-line"><span class="speaker">MATT:</span> Tony, this is my friend. <input class="blank" name="b1" aria-label="B1" autocomplete="off"> name is Jennifer Miller.</div>
+<div class="dialogue-line"><span class="speaker"></span> Jennifer is in <input class="blank" name="b2" aria-label="B2" autocomplete="off"> English class.</div>
+<div class="dialogue-line"><span class="speaker">TONY:</span> Nice to meet you.</div>
+<div class="dialogue-line"><span class="speaker"></span> What's <input class="blank" name="b3" aria-label="B3" autocomplete="off"> last name again?</div>
+<div class="dialogue-line"><span class="speaker">JENNIFER:</span> It's Miller.</div>
+</div>
+</section>
+<section class="card" id="sectionC">
+<div class="section-head"><div class="letter">C</div><div><h2>Complete the conversation</h2><p class="hint">Type the missing words directly in the blanks.</p></div></div>
+<div class="dialogue">
+<div class="dialogue-line"><span class="speaker">A:</span> Excuse me. <input class="blank" name="c1" aria-label="C1" autocomplete="off"> you Ms. Brown?</div>
+<div class="dialogue-line"><span class="speaker">B:</span> No, <input class="blank short" name="c2" aria-label="C2" autocomplete="off"> not. <input class="blank" name="c3" aria-label="C3" autocomplete="off"> over there.</div>
+<div class="dialogue-line"><span class="speaker"></span> My name is Nichole Parker.</div>
+<div class="dialogue-line"><span class="speaker">A:</span> Oh! I'm sorry. Well, <input class="blank" name="c4" aria-label="C4" autocomplete="off"> nice to meet you.</div>
+<div class="dialogue-line"><span class="speaker">B:</span> Nice to meet you.</div>
+</div>
+</section>
+<section class="card" id="sectionD">
+<div class="section-head"><div class="letter">D</div><div><h2>Check the correct response</h2><p class="hint">Choose one answer for each question.</p></div></div>
+<div class="q"><div class="qline"><span class="num">1.</span> Good-bye. Have a nice day.</div><div class="options">
+<label class="option"><input type="radio" name="d1" value="I'm just fine. Thank you."> I'm just fine. Thank you.</label>
+<label class="option"><input type="radio" name="d1" value="It's nice to meet you."> It's nice to meet you.</label>
+<label class="option"><input type="radio" name="d1" value="Thanks. You, too."> Thanks. You, too.</label></div></div>
+<div class="q"><div class="qline"><span class="num">2.</span> See you later.</div><div class="options">
+<label class="option"><input type="radio" name="d2" value="I'm OK. Thanks you."> I'm OK. Thanks you.</label>
+<label class="option"><input type="radio" name="d2" value="OK. Bye-bye."> OK. Bye-bye.</label>
+<label class="option"><input type="radio" name="d2" value="Not bad. How are you?"> Not bad. How are you?</label></div></div>
+<div class="q"><div class="qline"><span class="num">3.</span> Hi. How are you?</div><div class="options">
+<label class="option"><input type="radio" name="d3" value="Not bad, thanks."> Not bad, thanks.</label>
+<label class="option"><input type="radio" name="d3" value="Good night."> Good night.</label>
+<label class="option"><input type="radio" name="d3" value="Nice to meet you, too."> Nice to meet you, too.</label></div></div>
+<div class="q"><div class="qline"><span class="num">4.</span> Good evening, Beth.</div><div class="options">
+<label class="option"><input type="radio" name="d4" value="Hello. How are you, Mr. Smith?"> Hello. How are you, Mr. Smith?</label>
+<label class="option"><input type="radio" name="d4" value="Great. How about you, Mr. Smith?"> Great. How about you, Mr. Smith?</label>
+<label class="option"><input type="radio" name="d4" value="Good night. See you tomorrow. Mr. Smith."> Good night. See you tomorrow. Mr. Smith.</label></div></div>
+</section>
+<section class="card" id="sectionE">
+<div class="section-head"><div class="letter">E</div><div><h2>Circle the correct words</h2><p class="hint">Choose the correct option from the dropdowns placed inside each sentence.</p></div></div>
+<div class="q"><div class="qline"><span class="num">1.</span> A: What are <select class="inline-select" name="e1a" aria-label="E1 first choice"><option value="">(choose)</option><option>it</option><option>this</option><option>these</option></select>?</div>
+<div class="qline" style="margin-left:28px">B: <select class="inline-select" name="e1b" aria-label="E1 second choice"><option value="">(choose)</option><option>This</option><option>They're</option><option>It's</option></select> earrings.</div></div>
+<div class="q"><div class="qline"><span class="num">2.</span> A: <select class="inline-select" name="e2a" aria-label="E2 first choice"><option value="">(choose)</option><option>Is this</option><option>This is</option><option>Are these</option></select> your sunglasses?</div>
+<div class="qline" style="margin-left:28px">B: No, <select class="inline-select" name="e2b" aria-label="E2 second choice"><option value="">(choose)</option><option>is</option><option>it's</option><option>they're</option></select> not.</div></div>
+<div class="q"><div class="qline"><span class="num">3.</span> A: Is <select class="inline-select" name="e3a" aria-label="E3 first choice"><option value="">(choose)</option><option>the</option><option>this</option><option>they</option></select> a notebook?</div>
+<div class="qline" style="margin-left:28px">B: No, it isn’t. It's <select class="inline-select" name="e3b" aria-label="E3 second choice"><option value="">(choose)</option><option>a</option><option>an</option><option>the</option></select> address book.</div></div>
+</section>
+<section class="card" id="sectionF">
+<div class="section-head"><div class="letter">F</div><div><h2>Complete the conversations</h2><p class="hint">Use the correct prepositions. One image supports all four questions.</p></div></div>
+<div class="media-panel">
+<div class="media-title">Question image — upload your image</div>
+<input type="file" id="imageUpload" accept="image/*" aria-label="Upload question image">
+<img id="imagePreview" class="image-preview" alt="Uploaded image for Section F">
+<p class="note" id="imageStatus">No image uploaded yet.</p>
+</div>
+<div class="dialogue">
+<div class="dialogue-line"><span class="speaker">1. A:</span> Where are the keys?</div>
+<div class="dialogue-line"><span class="speaker">B:</span> They're <input class="blank" name="f1" aria-label="F1" autocomplete="off"> the briefcase.</div>
+<div class="dialogue-line" style="margin-top:12px"><span class="speaker">2. A:</span> Is the CD player behind the briefcase?</div>
+<div class="dialogue-line"><span class="speaker">B:</span> No, it's not. It's <input class="blank" name="f2" aria-label="F2" autocomplete="off"> the briefcase.</div>
+<div class="dialogue-line" style="margin-top:12px"><span class="speaker">3. A:</span> Where's the newspaper?</div>
+<div class="dialogue-line"><span class="speaker">B:</span> It's <input class="blank" name="f3" aria-label="F3" autocomplete="off"> the briefcase.</div>
+<div class="dialogue-line" style="margin-top:12px"><span class="speaker">4. A:</span> Are the books <input class="blank" name="f4" aria-label="F4" autocomplete="off"> the CD player?</div>
+<div class="dialogue-line"><span class="speaker">B:</span> Yes, they are.</div>
+</div>
+</section>
+<div class="bottom-actions"><button type="button" class="secondary" id="clearBtn">Clear answers</button><button type="submit" class="primary">Submit exam</button></div>
+</form>
+<section class="card result" id="result" aria-live="polite"><h2>Exam submitted</h2><p>Your answers have been checked against the Unit 1–2 answer key. Written answers are checked without regard to capitalization and with extra spaces ignored.</p><h3 id="scoreHeading"></h3><div class="result-grid" id="resultGrid"></div><div class="bottom-actions"><button class="secondary" type="button" id="editBtn">Return to exam</button><button class="primary" type="button" id="downloadBtn">Download responses (.txt)</button></div></section>
+</main><footer>CELESTE English School · English Exam</footer>
+<script>
+const form=document.getElementById('examForm');
+const audioInput=document.getElementById('audioUpload'), audio=document.getElementById('listeningAudio');
+const playBtn=document.getElementById('playAudio'), audioStatus=document.getElementById('audioStatus');
+let playsLeft=2, audioUrl=null, submittedData=null;
+const answerKey={a1:'Z.A.C.H.A.R.Y',a2:'718-555-8871',a3:'camera',a4:'Under his desk',b1:'Her',b2:'my',b3:'your',c1:'Are',c2:"I'm",c3:"She's",c4:"it's",d1:'Thanks. You, too.',d2:'OK. Bye-bye.',d3:'Not bad, thanks.',d4:'Hello. How are you, Mr. Smith?',e1a:'these',e1b:"They're",e2a:'Are these',e2b:"they're",e3a:'this',e3b:'an',f1:'on',f2:'beside',f3:'under',f4:'in front of'};
+audioInput.addEventListener('change',()=>{
+  if(audioUrl) URL.revokeObjectURL(audioUrl);
+  const file=audioInput.files[0];
+  if(!file){audio.removeAttribute('src');playBtn.disabled=true;audioStatus.textContent='No audio uploaded yet.';return;}
+  audioUrl=URL.createObjectURL(file);audio.src=audioUrl;playsLeft=2;playBtn.disabled=false;playBtn.textContent='▶ Play audio (2 plays left)';audioStatus.textContent=file.name+' · Ready to play';
+});
+playBtn.addEventListener('click',async()=>{
+  if(!audio.src||playsLeft<=0||audio.paused===false)return;
+  playsLeft--;playBtn.disabled=true;playBtn.textContent='▶ Play audio ('+playsLeft+' plays left)';
+  audio.currentTime=0;
+  try{await audio.play();audioStatus.textContent='Playing… Please listen carefully.';}catch(e){playsLeft++;playBtn.disabled=false;playBtn.textContent='▶ Play audio ('+playsLeft+' plays left)';audioStatus.textContent='Unable to play this file. Try another audio file.';}
+});
+audio.addEventListener('ended',()=>{audioStatus.textContent='Audio finished. '+playsLeft+' play'+(playsLeft===1?'':'s')+' left.';playBtn.disabled=playsLeft<=0;});
+audio.addEventListener('error',()=>{audioStatus.textContent='Could not load audio. Please choose a supported audio file.';});
+document.addEventListener('keydown',e=>{if(e.target===audio && ['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();}});
+const imageInput=document.getElementById('imageUpload'), preview=document.getElementById('imagePreview');
+let imageUrl=null;
+imageInput.addEventListener('change',()=>{
+ if(imageUrl)URL.revokeObjectURL(imageUrl);
+ const file=imageInput.files[0];if(!file){preview.style.display='none';return;}
+ imageUrl=URL.createObjectURL(file);preview.src=imageUrl;preview.style.display='block';document.getElementById('imageStatus').textContent=file.name;
+});
+const fields=[...form.querySelectorAll('input:not([type=file]), select')];
+function updateProgress(){let count=fields.filter(el=>el.type==='radio'?el.checked:el.value.trim()!=='').length;let total=new Set(fields.map(el=>el.type==='radio'?el.name:el.name)).size;document.getElementById('progressText').textContent=count+' responses entered';document.getElementById('progressBar').style.width=(count/25*100)+'%';}
+form.addEventListener('input',updateProgress);form.addEventListener('change',updateProgress);
+function collect(){const data=[];const seen=new Set();for(const el of fields){if(!el.name||seen.has(el.name))continue;seen.add(el.name);let val='';if(el.type==='radio'){const checked=form.querySelector('input[name="'+el.name+'"]:checked');val=checked?checked.value:'';}else val=el.value;data.push({name:el.name,value:val});}return data;}
+function labelFor(name){return ({a1:'A1 · First name',a2:'A2 · Sue’s phone number',a3:'A3 · Item in bag',a4:'A4 · Wallet location',b1:'B1 · Pronoun',b2:'B2 · Pronoun',b3:'B3 · Pronoun',c1:'C1 · Missing words',c2:'C2 · Missing words',c3:'C3 · Missing words',c4:'C4 · Missing words',d1:'D1 · Response',d2:'D2 · Response',d3:'D3 · Response',d4:'D4 · Response',e1a:'E1 · First choice',e1b:'E1 · Second choice',e2a:'E2 · First choice',e2b:'E2 · Second choice',e3a:'E3 · First choice',e3b:'E3 · Second choice',f1:'F1 · Preposition',f2:'F2 · Preposition',f3:'F3 · Preposition',f4:'F4 · Preposition'})[name]||name;}
+form.addEventListener('submit',e=>{e.preventDefault();submittedData=collect();const grid=document.getElementById('resultGrid');grid.innerHTML='';let score=0,total=Object.keys(answerKey).length;
+submittedData.forEach(item=>{const expected=answerKey[item.name];const norm=v=>celesteNorm(v);const correct=norm(item.value)===norm(expected);if(correct)score++;const div=document.createElement('div');div.className='result-item';div.style.borderColor=correct?'#72c7a7':(item.value?'#f0b7b7':'#e2e8f0');const strong=document.createElement('strong');strong.textContent=labelFor(item.name)+' · '+(correct?'Correct':(item.value?'Incorrect':'Not answered'));const val=document.createElement('span');val.textContent='Your answer: '+(item.value||'Not answered');const ans=document.createElement('div');ans.style.marginTop='5px';ans.style.fontSize='.9rem';ans.style.color='#087f5b';ans.textContent='Correct answer: '+expected;div.append(strong,val,ans);grid.appendChild(div);});
+document.getElementById('scoreHeading').textContent='Score: '+score+' / '+total+' ('+Math.round(score/total*100)+'%)';document.getElementById('result').style.display='block';document.getElementById('result').scrollIntoView({behavior:'smooth'});});
+document.getElementById('editBtn').addEventListener('click',()=>{document.getElementById('result').style.display='none';form.scrollIntoView({behavior:'smooth'});});
+document.getElementById('clearBtn').addEventListener('click',()=>{if(confirm('Clear all exam answers?')){form.reset();updateProgress();document.getElementById('result').style.display='none';}});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(!submittedData)return;const textOut='CELESTE English School — Unit 1–2 English Exam Responses\n\nScore: '+submittedData.filter(x=>String(x.value||'').trim().replace(/\\s+/g,' ').toLowerCase()===String(answerKey[x.name]).trim().replace(/\\s+/g,' ').toLowerCase()).length+' / '+Object.keys(answerKey).length+'\n\n'+submittedData.map(x=>labelFor(x.name)+': '+(x.value||'Not answered')+' | Correct answer: '+answerKey[x.name]).join('\n')+'\n';const blob=new Blob([textOut],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='english-exam-responses.txt';a.click();URL.revokeObjectURL(url);});
+updateProgress();
+</script>
+<style>.combined-nav{padding:9px 16px;background:#fff;border-bottom:1px solid #ddd;font:700 14px system-ui}.combined-nav a{color:#8e302d;text-decoration:none}.celeste-print-result{display:flex;align-items:center;justify-content:center;width:max-content;max-width:100%;margin:18px auto;padding:12px 18px;border:0;border-radius:9px;background:#8e302d;color:#fff;font-weight:800;cursor:pointer}@media print{.combined-nav,.celeste-print-result,button[type=submit],input[type=file],audio{display:none!important}body{background:#fff!important}}</style><script>document.addEventListener('DOMContentLoaded',function(){var a=document.querySelector('audio');if(a&&!a.getAttribute('src')){a.src='../audio/U1-2_A1.mp3';a.load();}var b=document.createElement('button');b.type='button';b.className='celeste-print-result';b.textContent='Print as PDF';b.hidden=true;b.onclick=function(){window.print()};document.body.appendChild(b);var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){setTimeout(function(){b.hidden=false},200)});});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPath = '../audio/U1-2_A1.mp3';
+  const audio = document.getElementById('listeningAudio') || document.getElementById('audio');
+  if (audio) {
+    audio.src = audioPath;
+    audio.load();
+    audio.style.display = 'block';
+    audio.controls = !document.getElementById('playAudio');
+    const playBtn = document.getElementById('playAudio');
+    const status = document.getElementById('audioStatus') || document.getElementById('playCount');
+    if (playBtn) { playBtn.disabled = false; playBtn.textContent = '▶ Play audio (2 plays left)'; }
+    if (status) status.textContent = 'Audio path: ../audio/U1-2_A1.mp3';
+  }
+  const img = document.getElementById('imagePreview');
+  if (img) { img.src = '../images/u1-2-prepositions.png'; img.style.display = 'block'; img.alt = 'Question image'; const status = document.getElementById('imageStatus'); if(status) status.textContent = 'Loaded from ../images/u1-2-prepositions.png'; }
+});
+</script>
+<style>
+/* CELESTE submitted-result panel */
+#result,#results{box-sizing:border-box;max-width:1000px;margin:28px auto;padding:clamp(20px,4vw,36px);background:#fff;border:1px solid #e6e8ee;border-radius:18px;box-shadow:0 12px 36px rgba(25,35,55,.09);color:#202638}
+#result h2,#results h2{margin:0 0 12px;color:#8e302d;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
+#scoreHeading,#score{display:block;margin:12px 0 20px;font-size:1.2rem;font-weight:800;color:#202638}
+#resultGrid,#feedback{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+#resultGrid .result-item,#feedback .feedback{box-sizing:border-box;padding:15px;border:1px solid #f0b7b7;border-left:5px solid #c94a4a;border-radius:12px;background:#fff8f8;line-height:1.55;overflow-wrap:anywhere}
+#resultGrid .result-item strong,#feedback .feedback strong{display:block;margin-bottom:5px;color:#9f2f2f}
+.celeste-print-result{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:22px auto 0;padding:13px 22px;border:0;border-radius:10px;background:#8e302d;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(142,48,45,.2)}
+.celeste-print-result:hover{background:#702421}
+@media(max-width:600px){#result,#results{margin:16px 8px;padding:18px;border-radius:14px}#resultGrid,#feedback{grid-template-columns:1fr}.celeste-print-result{width:max-content;max-width:100%;margin-left:auto;margin-right:auto}}
+@media print{body{background:#fff!important}#result,#results{max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none}#resultGrid,#feedback{display:block}#resultGrid .result-item,#feedback .feedback{break-inside:avoid;margin:0 0 10px}.combined-nav,.celeste-print-result,button,input[type=file],audio,footer{display:none!important}}
+</style>
+<script>
+(function(){
+ function setupResultView(){
+  const result=document.getElementById('result')||document.getElementById('results');
+  if(!result)return;
+  const heading=result.querySelector('h2');if(heading && heading.textContent!=='Exam submitted')heading.textContent='Exam submitted';
+  function cleanAndStyle(){
+   // Keep only incorrect / unanswered items; never reveal the answer key.
+   const grid=document.getElementById('resultGrid');
+   if(grid){[...grid.children].forEach(card=>{
+    const label=card.querySelector('strong');
+    if(label && /·\s*Correct\s*$/.test(label.textContent) && !/Incorrect/.test(label.textContent)){card.remove();return;}
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+   });}
+   const feedback=document.getElementById('feedback');
+   if(feedback){[...feedback.children].forEach(card=>{
+    if(card.querySelector('.correct')){card.remove();return;}
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.innerHTML=card.innerHTML.replace(/<br\s*\/?><span[^>]*>\s*Correct answer:[\s\S]*?<\/span>/gi,'');
+   });}
+   // Remove text-response downloads and secondary result actions.
+   result.querySelectorAll('#downloadBtn,button[id="editBtn"]').forEach(el=>el.remove());
+   // Some older pages put result actions in a shared action row.
+   result.querySelectorAll('.bottom-actions').forEach(row=>{if(!row.querySelector('button:not(.celeste-print-result)'))row.remove();});
+   // Keep exactly one PDF button in the submitted-result panel.
+   document.querySelectorAll('body > .celeste-print-result').forEach(el=>el.remove());
+   let printBtn=result.querySelector('.celeste-print-result');
+   if(!printBtn){printBtn=document.createElement('button');printBtn.type='button';printBtn.className='celeste-print-result';printBtn.textContent='Print as PDF';printBtn.addEventListener('click',()=>window.print());result.appendChild(printBtn);}
+   else {if(printBtn.textContent!=='Print as PDF')printBtn.textContent='Print as PDF';printBtn.hidden=false;}
+  }
+  // Wait until the original grading script has rendered its result.
+  const form=document.querySelector('form');if(form)form.addEventListener('submit',()=>setTimeout(cleanAndStyle,80));
+  const observer=new MutationObserver(()=>{if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();});
+  observer.observe(result,{childList:true,subtree:true});
+  if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupResultView);else setupResultView();
+})();
+</script>
+</body></html>

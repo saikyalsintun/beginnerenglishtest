@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELESTE English School — Units 11–12 Quiz</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--ink:#1f2937;--muted:#64748b;--line:#dbe3ef;--green:#15803d;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#172554,#1d4ed8);color:white;padding:28px 18px}.wrap{max-width:980px;margin:auto;padding:0 16px}header h1{margin:0;font-size:clamp(1.5rem,4vw,2.25rem)}header p{margin:5px 0 0;color:#dbeafe}
+main{padding:22px 0 50px}.instructions,section,#results{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 3px 12px #0f172a08}
+h2{font-size:1.15rem;margin:0 0 12px;color:var(--navy)}.sub,.small{color:var(--muted);font-size:.92rem}.sub{margin-top:-6px}.q{padding:11px 0;border-top:1px solid #edf1f7}.q:first-of-type{border-top:0}
+input[type=text],select{font:inherit;border:1px solid #cbd5e1;border-radius:8px;padding:7px 10px;background:white;max-width:100%}input[type=text]{width:min(100%,480px)}.inline{width:155px!important;display:inline-block;margin:3px 2px}
+.choice{display:flex;gap:9px;align-items:flex-start;margin:7px 0}.choice input{margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.btn{border:0;border-radius:10px;padding:11px 17px;font:inherit;font-weight:650;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#e2e8f0;color:#0f172a}
+#results{display:none;border:2px solid var(--blue)}#score{font-size:1.5rem;font-weight:800;color:var(--navy)}.feedback{margin:10px 0;padding:10px 12px;border-radius:8px;background:#f8fafc}.correct{color:var(--green);font-weight:700}.incorrect{color:var(--red);font-weight:700}
+article{border-left:4px solid #93c5fd;padding:12px 16px;background:#f8fbff;border-radius:0 10px 10px 0}.meds{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.med{border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;font-weight:700;background:#fafcff}.med span{display:block;font-size:.8rem;color:var(--muted);font-weight:400}
+footer{text-align:center;color:var(--muted);padding:18px}@media(max-width:600px){section{padding:15px}.inline{width:120px!important}input[type=text]{width:100%}}
+</style><script>
+/* Flexible answer matching: ignore case/punctuation, accept common contractions and number words. */
+function celesteNorm(value){
+ let s=String(value??'').toLowerCase().replace(/[’‘]/g,"'").trim();
+ const contractions=[[/\bcan't\b/g,'cannot'],[/\bcannot\b/g,'cannot'],[/\bwon't\b/g,'will not'],[/\bdon't\b/g,'do not'],[/\bdoesn't\b/g,'does not'],[/\bdidn't\b/g,'did not'],[/\bisn't\b/g,'is not'],[/\baren't\b/g,'are not'],[/\bwasn't\b/g,'was not'],[/\bweren't\b/g,'were not'],[/\bhaven't\b/g,'have not'],[/\bhasn't\b/g,'has not'],[/\bhadn't\b/g,'had not'],[/\bwouldn't\b/g,'would not'],[/\bshouldn't\b/g,'should not'],[/\bcouldn't\b/g,'could not'],[/\bit's\b/g,'it is'],[/\bthey're\b/g,'they are'],[/\bwe're\b/g,'we are'],[/\byou're\b/g,'you are'],[/\bI'm\b/gi,'i am'],[/\bhe's\b/g,'he is'],[/\bshe's\b/g,'she is'],[/\bthat's\b/g,'that is'],[/\bthere's\b/g,'there is'],[/\bwhat's\b/g,'what is'],[/\bwho's\b/g,'who is'],[/\bwhere's\b/g,'where is'],[/\bhow's\b/g,'how is'],[/\bthey've\b/g,'they have'],[/\bwe've\b/g,'we have'],[/\byou've\b/g,'you have'],[/\bI've\b/g,'i have'],[/\bI'll\b/g,'i will'],[/\byou'll\b/g,'you will'],[/\bwe'll\b/g,'we will'],[/\bthey'll\b/g,'they will'],[/\bhe'll\b/g,'he will'],[/\bshe'll\b/g,'she will']];
+ for(const [pattern,replacement] of contractions)s=s.replace(pattern,replacement);
+ const nums={zero:'0',oh:'0',one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',seven:'7',eight:'8',nine:'9',ten:'10',eleven:'11',twelve:'12',thirteen:'13',fourteen:'14',fifteen:'15',sixteen:'16',seventeen:'17',eighteen:'18',nineteen:'19',twenty:'20',thirty:'30',forty:'40',fifty:'50',sixty:'60',seventy:'70',eighty:'80',ninety:'90'};
+ s=s.replace(/\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\b/g,w=>nums[w]);
+ return s.replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+}
+</script>
+</head>
+<body>
+<div class="combined-nav"><a href="../index.html">← All units</a></div>
+<header><div class="wrap"><h1>CELESTE English School</h1><p>Units 11–12 Quiz · Interactive exam</p></div></header>
+<main class="wrap">
+<div class="instructions"><strong>Instructions</strong><br>Complete all six sections. Section A listening audio can be played a maximum of <strong>two times</strong>. Section E uses medication names instead of the original printed pictures because the image-to-letter mapping was not supplied. Submit to see your score and answer feedback.</div>
+<form id="exam">
+<section><h2>A. Listening</h2><p class="sub">Listen to the conversation. Check the correct answers.</p>
+<label class="small" for="audioFile">Upload the listening audio file:</label><br><input id="audioFile" type="file" accept="audio/*"><audio id="audio" controls controlsList="nodownload noplaybackrate" style="display:none;width:100%;margin-top:12px"></audio><p id="playCount" class="small">Audio has not been uploaded. Once uploaded, it can be played twice.</p>
+<div class="q"><strong>1. Mark is going to be ___.</strong><label class="choice"><input type="radio" name="a1" value="13 years old"> 13 years old</label><label class="choice"><input type="radio" name="a1" value="30 years old"> 30 years old</label><label class="choice"><input type="radio" name="a1" value="33 years old"> 33 years old</label></div>
+<div class="q"><strong>2. They're going to have a party on ___.</strong><label class="choice"><input type="radio" name="a2" value="Friday"> Friday</label><label class="choice"><input type="radio" name="a2" value="Saturday"> Saturday</label><label class="choice"><input type="radio" name="a2" value="Sunday"> Sunday</label></div>
+<div class="q"><strong>3. They're going to ___ at the party.</strong><label class="choice"><input type="radio" name="a3" value="dance"> dance</label><label class="choice"><input type="radio" name="a3" value="sing songs"> sing songs</label><label class="choice"><input type="radio" name="a3" value="watch television"> watch television</label></div>
+</section>
+<section><h2>B. Match the Questions with the Answers</h2><p class="sub">Choose the matching letter for each question.</p>
+<div class="q">1. Are we going to work this weekend? <select name="b1"><option value="">Choose...</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option><option value="f">f</option></select></div>
+<div class="q">2. Are they going to cook dinner? <select name="b2"><option value="">Choose...</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+<div class="q">3. Are you going to exercise this evening? <select name="b3"><option value="">Choose...</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+<div class="q">4. Is Bill going to do anything after work? <select name="b4"><option value="">Choose...</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+<div class="q">5. Are Pam and Andrew going to have a picnic this weekend? <select name="b5"><option value="">Choose...</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+<div class="q">6. Is it going to rain tomorrow? <select name="b6"><option value="">Choose...</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+<article><strong>Answers</strong><br>a. Yes, I am. I'm going to go swimming.<br>b. No, it's not. It's going to be cloudy.<br>c. No, we're not. We're going to relax.<br>d. Yes, they are. They're going to make pasta.<br>e. Yes, he is. He's going to visit his parents.<br>f. No, they're not. They're going to have a party.</article>
+</section>
+<section><h2>C. Write Wh-Questions</h2><p class="sub">Write questions to complete the conversation.</p>
+<div class="q"><strong>A:</strong> <input type="text" name="c1" placeholder="Question 1"><br><strong>B:</strong> Next summer? We're going to go to Alaska.</div>
+<div class="q"><strong>A:</strong> Alaska, wow! <input type="text" name="c2" placeholder="Question 2"><br><strong>B:</strong> We're going to take a boat.</div>
+<div class="q"><strong>A:</strong> That sounds so exciting! <input type="text" name="c3" placeholder="Question 3"><br><strong>B:</strong> I'm going to go with my family.</div>
+<div class="q"><strong>A:</strong> Great! <input type="text" name="c4" placeholder="Question 4"><br><strong>B:</strong> We're going to go on June 21st.</div>
+</section>
+<section><h2>D. Circle the Correct Words</h2>
+<div class="q">1. A: I <select name="d1a"><option value="">Choose...</option><option>feel</option><option>get</option><option>have</option></select> a headache.<br>B: <select name="d1b"><option value="">Choose...</option><option>Drink</option><option>Eat</option><option>Take</option></select> these pills.</div>
+<div class="q">2. A: <select name="d2a"><option value="">Choose...</option><option>What's</option><option>How's</option><option>Why's</option></select> the matter?<br>B: I don't feel <select name="d2b"><option value="">Choose...</option><option>better</option><option>sick</option><option>well</option></select>. I have a stomachache.</div>
+<div class="q">3. A: <select name="d3a"><option value="">Choose...</option><option>How</option><option>What</option><option>Where</option></select> do you feel today?<br>B: Not so good. I <select name="d3b"><option value="">Choose...</option><option>have</option><option>feel</option><option>am</option></select> sore eyes.</div>
+<div class="q">4. A: I have a backache.<br>B: Don't <select name="d4a"><option value="">Choose...</option><option>exercise</option><option>rest</option><option>relax</option></select>. And <select name="d4b"><option value="">Choose...</option><option>put</option><option>use</option><option>give</option></select> this medication.</div>
+</section>
+<section><h2>E. Match the Medications with the Conversations</h2><p class="sub">Choose the health problem that matches each medication. The original image letter mapping was not included in the supplied answer key, so this section is graded by medication and health problem rather than printed letters.</p>
+<div class="meds"><div class="med">MUSCLE CREAM<span>Medication 1</span></div><div class="med">ASPIRIN TABLETS<span>Medication 2</span></div><div class="med">ANTACID TABLETS<span>Medication 3</span></div><div class="med">EYE DROPS<span>Medication 4</span></div></div>
+<div class="q">1. Muscle cream is for a <select name="e1"><option value="">Choose...</option><option>backache</option><option>headache</option><option>stomachache</option><option>sore eyes</option></select>.</div>
+<div class="q">2. Aspirin tablets are for a <select name="e2"><option value="">Choose...</option><option>backache</option><option>headache</option><option>stomachache</option><option>sore eyes</option></select>.</div>
+<div class="q">3. Antacid tablets are for a <select name="e3"><option value="">Choose...</option><option>backache</option><option>headache</option><option>stomachache</option><option>sore eyes</option></select>.</div>
+<div class="q">4. Eye drops are for <select name="e4"><option value="">Choose...</option><option>a backache</option><option>a headache</option><option>a stomachache</option><option>sore eyes</option></select>.</div>
+</section>
+<section><h2>F. Correct the Errors</h2><p class="sub">Read the article, then rewrite each sentence correctly using information from the article.</p>
+<article><h3>Home Remedies</h3><p><strong>A Cold:</strong> Many people eat hot chicken soup. Other people drink water with red pepper, sugar, lemon juice, and milk.</p><p><strong>A Headache:</strong> Put a cold cloth on your head, or splash your face with cold water. You can also put your hands in hot water. This can help.</p><p><strong>A Cough:</strong> Drink warm tea or take some honey. This can make your throat feel better.</p><p><strong>Insomnia:</strong> Drink a large glass of warm milk. Or take a very warm bath.</p></article>
+<div class="q"><strong>Example:</strong> Use these easy remedies at work.<br>Corrected: Use these easy remedies at home.</div>
+<div class="q">1. For a cold, some people eat hot pepper soup or drink hot water.<br><input type="text" name="f1" placeholder="Corrected sentence"></div>
+<div class="q">2. For a cough, you can drink warm milk or take some honey.<br><input type="text" name="f2" placeholder="Corrected sentence"></div>
+<div class="q">3. For a headache, put a little hot water on your face.<br><input type="text" name="f3" placeholder="Corrected sentence"></div>
+<div class="q">4. For insomnia, drink warm tea or take a warm bath.<br><input type="text" name="f4" placeholder="Corrected sentence"></div>
+</section>
+<div class="actions"><button class="btn primary" type="submit">Submit Exam &amp; Grade</button><button class="btn secondary" type="button" id="resetBtn">Reset Answers</button></div>
+</form>
+<div id="results" aria-live="polite"><h2>Exam Results</h2><div id="score"></div><p id="summary"></p><div id="feedback"></div><button class="btn primary" type="button" id="downloadBtn">Download My Results (.txt)</button></div>
+</main><footer>CELESTE English School · Units 11–12 Quiz</footer>
+<script>
+const audioInput=document.getElementById('audioFile'),audio=document.getElementById('audio'),playCount=document.getElementById('playCount');let plays=0,audioUrl=null,playingAllowed=false;
+audioInput.addEventListener('change',()=>{const file=audioInput.files[0];if(!file)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(file);audio.src=audioUrl;audio.style.display='block';plays=0;playingAllowed=true;audio.controls=true;playCount.textContent='Plays used: 0 / 2';audio.load();});
+audio.addEventListener('play',()=>{if(!playingAllowed||plays>=2){audio.pause();return;}plays++;playCount.textContent='Plays used: '+plays+' / 2';});
+audio.addEventListener('ended',()=>{if(plays>=2){playingAllowed=false;audio.controls=false;playCount.textContent='Maximum two plays reached.';}});
+audio.addEventListener('seeking',()=>{if(audio.currentTime>0)audio.currentTime=0;});
+const key={a1:'13 years old',a2:'Saturday',a3:'sing songs',b1:'c',b2:'d',b3:'a',b4:'e',b5:'f',b6:'b',
+c1:'Where are you going next summer?',c2:'How are you going to get there?',c3:'Who are you going to go with?',c4:'When are you going to go?',
+d1a:'have',d1b:'Take',d2a:"What's",d2b:'well',d3a:'How',d3b:'have',d4a:'exercise',d4b:'use',
+e1:'backache',e2:'headache',e3:'stomachache',e4:'sore eyes',
+f1:'For a cold, some people eat hot chicken soup or drink water with red pepper, sugar, lemon juice, and milk.',
+f2:'For a cough, you can drink warm tea or take some honey.',
+f3:'For a headache, put a cold cloth on your head or splash your face with cold water.',
+f4:'For insomnia, drink warm milk or take a warm bath.'};
+const normalize=s=>celesteNorm(s);
+const keys=Object.keys(key);let latestReport='';
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.getElementById('exam').addEventListener('submit',ev=>{ev.preventDefault();let earned=0,total=keys.length,items=[];
+keys.forEach(k=>{const el=document.querySelector('[name="'+k+'"]'),val=el?.value||'';let ok=normalize(val)===normalize(key[k]);
+if(k==='c1')ok=/^where are you going next summer$/.test(normalize(val));
+if(k==='c2')ok=/^how are you going to get there$/.test(normalize(val));
+if(k==='c3')ok=/^who are you going to go with$/.test(normalize(val));
+if(k==='c4')ok=/^when are you going to go$/.test(normalize(val));
+if(k[0]==='f'){const v=normalize(val),a=normalize(key[k]);ok=v===a || (k==='f3'&&v==='for a headache put a cold cloth on your head or splash your face with cold water') || (k==='f4'&&v==='for insomnia drink warm milk or take a warm bath');}
+if(ok)earned++;items.push({label:k.toUpperCase(),val:val||'(blank)',ans:key[k],ok});});
+const pct=Math.round(earned/total*100);document.getElementById('score').textContent=`${earned} / ${total} (${pct}%)`;document.getElementById('summary').textContent='Each item is worth one point. For Section F, include the key corrected information; punctuation differences are ignored.';
+const box=document.getElementById('feedback');box.innerHTML='';items.forEach(r=>{const d=document.createElement('div');d.className='feedback';d.innerHTML=`<strong>${r.label}</strong>: ${esc(r.val)} — <span class="${r.ok?'correct':'incorrect'}">${r.ok?'Correct':'Incorrect'}</span><br><span class="small">Answer: ${esc(r.ans)}</span>`;box.appendChild(d);});
+latestReport=`CELESTE English School — Units 11–12 Quiz\nScore: ${earned}/${total} (${pct}%)\n\n`+items.map(r=>`${r.label}: ${r.val} | ${r.ok?'Correct':'Incorrect'} | Correct answer: ${r.ans}`).join('\n')+'\n';
+document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});});
+document.getElementById('downloadBtn').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([latestReport],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='units-11-12-quiz-results.txt';a.click();URL.revokeObjectURL(url);});
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Reset all answers and start again?')){document.getElementById('exam').reset();document.getElementById('results').style.display='none';plays=0;playingAllowed=false;audio.pause();audio.removeAttribute('src');audio.style.display='none';audio.controls=true;playCount.textContent='Audio has not been uploaded. Once uploaded, it can be played twice.';latestReport='';}});
+</script><style>.combined-nav{padding:9px 16px;background:#fff;border-bottom:1px solid #ddd;font:700 14px system-ui}.combined-nav a{color:#8e302d;text-decoration:none}.celeste-print-result{display:flex;align-items:center;justify-content:center;width:max-content;max-width:100%;margin:18px auto;padding:12px 18px;border:0;border-radius:9px;background:#8e302d;color:#fff;font-weight:800;cursor:pointer}@media print{.combined-nav,.celeste-print-result,button[type=submit],input[type=file],audio{display:none!important}body{background:#fff!important}}</style><script>document.addEventListener('DOMContentLoaded',function(){var a=document.querySelector('audio');if(a&&!a.getAttribute('src')){a.src='../audio/U11-12_A1.mp3';a.load();}var b=document.createElement('button');b.type='button';b.className='celeste-print-result';b.textContent='Print as PDF';b.hidden=true;b.onclick=function(){window.print()};document.body.appendChild(b);var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){setTimeout(function(){b.hidden=false},200)});});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPath = '../audio/U11-12_A1.mp3';
+  const audio = document.getElementById('listeningAudio') || document.getElementById('audio');
+  if (audio) {
+    audio.src = audioPath;
+    audio.load();
+    audio.style.display = 'block';
+    audio.controls = !document.getElementById('playAudio');
+    const playBtn = document.getElementById('playAudio');
+    const status = document.getElementById('audioStatus') || document.getElementById('playCount');
+    if (playBtn) { playBtn.disabled = false; playBtn.textContent = '▶ Play audio (2 plays left)'; }
+    if (status) status.textContent = 'Audio path: ../audio/U11-12_A1.mp3';
+  }
+});
+</script>
+<style>
+/* CELESTE submitted-result panel */
+#result,#results{box-sizing:border-box;max-width:1000px;margin:28px auto;padding:clamp(20px,4vw,36px);background:#fff;border:1px solid #e6e8ee;border-radius:18px;box-shadow:0 12px 36px rgba(25,35,55,.09);color:#202638}
+#result h2,#results h2{margin:0 0 12px;color:#8e302d;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
+#scoreHeading,#score{display:block;margin:12px 0 20px;font-size:1.2rem;font-weight:800;color:#202638}
+#resultGrid,#feedback{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+#resultGrid .result-item,#feedback .feedback{box-sizing:border-box;padding:15px;border:1px solid #f0b7b7;border-left:5px solid #c94a4a;border-radius:12px;background:#fff8f8;line-height:1.55;overflow-wrap:anywhere}
+#resultGrid .result-item strong,#feedback .feedback strong{display:block;margin-bottom:5px;color:#9f2f2f}
+.celeste-print-result{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:22px auto 0;padding:13px 22px;border:0;border-radius:10px;background:#8e302d;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(142,48,45,.2)}
+.celeste-print-result:hover{background:#702421}
+@media(max-width:600px){#result,#results{margin:16px 8px;padding:18px;border-radius:14px}#resultGrid,#feedback{grid-template-columns:1fr}.celeste-print-result{width:max-content;max-width:100%;margin-left:auto;margin-right:auto}}
+@media print{body{background:#fff!important}#result,#results{max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none}#resultGrid,#feedback{display:block}#resultGrid .result-item,#feedback .feedback{break-inside:avoid;margin:0 0 10px}.combined-nav,.celeste-print-result,button,input[type=file],audio,footer{display:none!important}}
+</style>
+<script>
+(function(){
+ function setupResultView(){
+  const result=document.getElementById('result')||document.getElementById('results');
+  if(!result)return;
+  const heading=result.querySelector('h2');if(heading && heading.textContent!=='Exam submitted')heading.textContent='Exam submitted';
+  function cleanAndStyle(){
+   // Keep only incorrect / unanswered items; never reveal the answer key.
+   const grid=document.getElementById('resultGrid');
+   if(grid){[...grid.children].forEach(card=>{
+    const label=card.querySelector('strong');
+    if(label && /·\s*Correct\s*$/.test(label.textContent) && !/Incorrect/.test(label.textContent)){card.remove();return;}
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+   });}
+   const feedback=document.getElementById('feedback');
+   if(feedback){[...feedback.children].forEach(card=>{
+    if(card.querySelector('.correct')){card.remove();return;}
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.innerHTML=card.innerHTML.replace(/<br\s*\/?><span[^>]*>\s*Correct answer:[\s\S]*?<\/span>/gi,'');
+   });}
+   // Remove text-response downloads and secondary result actions.
+   result.querySelectorAll('#downloadBtn,button[id="editBtn"]').forEach(el=>el.remove());
+   // Some older pages put result actions in a shared action row.
+   result.querySelectorAll('.bottom-actions').forEach(row=>{if(!row.querySelector('button:not(.celeste-print-result)'))row.remove();});
+   // Keep exactly one PDF button in the submitted-result panel.
+   document.querySelectorAll('body > .celeste-print-result').forEach(el=>el.remove());
+   let printBtn=result.querySelector('.celeste-print-result');
+   if(!printBtn){printBtn=document.createElement('button');printBtn.type='button';printBtn.className='celeste-print-result';printBtn.textContent='Print as PDF';printBtn.addEventListener('click',()=>window.print());result.appendChild(printBtn);}
+   else {if(printBtn.textContent!=='Print as PDF')printBtn.textContent='Print as PDF';printBtn.hidden=false;}
+  }
+  // Wait until the original grading script has rendered its result.
+  const form=document.querySelector('form');if(form)form.addEventListener('submit',()=>setTimeout(cleanAndStyle,80));
+  const observer=new MutationObserver(()=>{if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();});
+  observer.observe(result,{childList:true,subtree:true});
+  if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupResultView);else setupResultView();
+})();
+</script>
+</body></html>

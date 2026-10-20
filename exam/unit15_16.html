@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELESTE English School — Units 15–16 Quiz</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--ink:#1f2937;--muted:#64748b;--line:#dbe3ef;--green:#15803d;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#172554,#1d4ed8);color:white;padding:28px 18px}.wrap{max-width:980px;margin:auto;padding:0 16px}header h1{margin:0;font-size:clamp(1.5rem,4vw,2.25rem)}header p{margin:5px 0 0;color:#dbeafe}
+main{padding:22px 0 50px}.instructions,section,#results{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 3px 12px #0f172a08}
+h2{font-size:1.15rem;margin:0 0 12px;color:var(--navy)}.sub,.small{color:var(--muted);font-size:.92rem}.sub{margin-top:-6px}.q{padding:11px 0;border-top:1px solid #edf1f7}.q:first-of-type{border-top:0}
+input[type=text],select{font:inherit;border:1px solid #cbd5e1;border-radius:8px;padding:7px 10px;background:white;max-width:100%}input[type=text]{width:min(100%,500px)}.inline{width:155px!important;display:inline-block;margin:3px 2px}
+.choice{display:flex;gap:9px;align-items:flex-start;margin:7px 0}.choice input{margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.btn{border:0;border-radius:10px;padding:11px 17px;font:inherit;font-weight:650;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#e2e8f0;color:#0f172a}
+#results{display:none;border:2px solid var(--blue)}#score{font-size:1.5rem;font-weight:800;color:var(--navy)}.feedback{margin:10px 0;padding:10px 12px;border-radius:8px;background:#f8fafc}.correct{color:var(--green);font-weight:700}.incorrect{color:var(--red);font-weight:700}
+article{border-left:4px solid #93c5fd;padding:12px 16px;background:#f8fbff;border-radius:0 10px 10px 0}
+footer{text-align:center;color:var(--muted);padding:18px}@media(max-width:600px){section{padding:15px}.inline{width:120px!important}input[type=text]{width:100%}}
+</style><script>
+/* Flexible answer matching: ignore case/punctuation, accept common contractions and number words. */
+function celesteNorm(value){
+ let s=String(value??'').toLowerCase().replace(/[’‘]/g,"'").trim();
+ const contractions=[[/\bcan't\b/g,'cannot'],[/\bcannot\b/g,'cannot'],[/\bwon't\b/g,'will not'],[/\bdon't\b/g,'do not'],[/\bdoesn't\b/g,'does not'],[/\bdidn't\b/g,'did not'],[/\bisn't\b/g,'is not'],[/\baren't\b/g,'are not'],[/\bwasn't\b/g,'was not'],[/\bweren't\b/g,'were not'],[/\bhaven't\b/g,'have not'],[/\bhasn't\b/g,'has not'],[/\bhadn't\b/g,'had not'],[/\bwouldn't\b/g,'would not'],[/\bshouldn't\b/g,'should not'],[/\bcouldn't\b/g,'could not'],[/\bit's\b/g,'it is'],[/\bthey're\b/g,'they are'],[/\bwe're\b/g,'we are'],[/\byou're\b/g,'you are'],[/\bI'm\b/gi,'i am'],[/\bhe's\b/g,'he is'],[/\bshe's\b/g,'she is'],[/\bthat's\b/g,'that is'],[/\bthere's\b/g,'there is'],[/\bwhat's\b/g,'what is'],[/\bwho's\b/g,'who is'],[/\bwhere's\b/g,'where is'],[/\bhow's\b/g,'how is'],[/\bthey've\b/g,'they have'],[/\bwe've\b/g,'we have'],[/\byou've\b/g,'you have'],[/\bI've\b/g,'i have'],[/\bI'll\b/g,'i will'],[/\byou'll\b/g,'you will'],[/\bwe'll\b/g,'we will'],[/\bthey'll\b/g,'they will'],[/\bhe'll\b/g,'he will'],[/\bshe'll\b/g,'she will']];
+ for(const [pattern,replacement] of contractions)s=s.replace(pattern,replacement);
+ const nums={zero:'0',oh:'0',one:'1',two:'2',three:'3',four:'4',five:'5',six:'6',seven:'7',eight:'8',nine:'9',ten:'10',eleven:'11',twelve:'12',thirteen:'13',fourteen:'14',fifteen:'15',sixteen:'16',seventeen:'17',eighteen:'18',nineteen:'19',twenty:'20',thirty:'30',forty:'40',fifty:'50',sixty:'60',seventy:'70',eighty:'80',ninety:'90'};
+ s=s.replace(/\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\b/g,w=>nums[w]);
+ return s.replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+}
+</script>
+</head><body>
+<div class="combined-nav"><a href="../index.html">← All units</a></div>
+<header><div class="wrap"><h1>CELESTE English School</h1><p>Units 15–16 Quiz · Interactive exam</p></div></header>
+<main class="wrap">
+<div class="instructions"><strong>Instructions</strong><br>Complete all six sections. Section A listening audio can be played a maximum of <strong>two times</strong>. Submit the exam to see your score and the correct answers.</div>
+<form id="exam">
+<section><h2>A. Listening — Phone Conversations</h2><p class="sub">Listen to four phone conversations. Circle the correct words.</p>
+<label class="small" for="audioFile">Upload the listening audio file:</label><br><input id="audioFile" type="file" accept="audio/*"><audio id="audio" controls controlsList="nodownload noplaybackrate" style="display:none;width:100%;margin-top:12px"></audio><p id="playCount" class="small">Audio has not been uploaded. Once uploaded, it can be played twice.</p>
+<div class="q"><strong>1. Linda is</strong> <label class="choice"><input type="radio" name="a1" value="in class"> in class</label><label class="choice"><input type="radio" name="a1" value="at home"> at home</label><label class="choice"><input type="radio" name="a1" value="on her break"> on her break</label> now.</div>
+<div class="q"><strong>2. David is going to</strong> <label class="choice"><input type="radio" name="a2" value="do laundry"> do laundry</label><label class="choice"><input type="radio" name="a2" value="study for a test"> study for a test</label><label class="choice"><input type="radio" name="a2" value="help his parents"> help his parents</label> tomorrow.</div>
+<div class="q"><strong>3. Jasmine is going to go</strong> <label class="choice"><input type="radio" name="a3" value="on vacation"> on vacation</label><label class="choice"><input type="radio" name="a3" value="to a concert"> to a concert</label><label class="choice"><input type="radio" name="a3" value="to a movie"> to a movie</label> tomorrow.</div>
+<div class="q"><strong>4. James is going to</strong> <label class="choice"><input type="radio" name="a4" value="get up early"> get up early</label><label class="choice"><input type="radio" name="a4" value="go to bed early"> go to bed early</label><label class="choice"><input type="radio" name="a4" value="see a movie"> see a movie</label> tonight.</div>
+</section>
+<section><h2>B. Correct the Four Mistakes</h2><p class="sub">Read Brenda's message and rewrite each incorrect part. There are four mistakes.</p>
+<article><p>Hi Kate,</p><p>Sorry I <strong>miss</strong> your call on Saturday. I wasn't home. I was in the country this weekend. The weather <strong>were</strong> beautiful. <strong>My parents there.</strong> I was all alone. <strong>It great.</strong></p><p>Talk to you soon,<br>Brenda</p></article>
+<div class="q">1. <input type="text" name="b1" placeholder="Correct: miss"></div>
+<div class="q">2. <input type="text" name="b2" placeholder="Correct: were"></div>
+<div class="q">3. <input type="text" name="b3" placeholder="Correct: My parents there."></div>
+<div class="q">4. <input type="text" name="b4" placeholder="Correct: It great."></div>
+</section>
+<section><h2>C. Complete the Questions</h2>
+<div class="q">1. A: <input type="text" name="c1" placeholder="Complete the question"><br>B: No, they weren't. My parents were born in Japan.</div>
+<div class="q">2. A: <input type="text" name="c2" placeholder="Complete the question"><br>B: I grew up in Tokyo.</div>
+<div class="q">3. A: <input type="text" name="c3" placeholder="Complete the question"><br>B: My first English teacher was Mr. Sato.</div>
+<div class="q">4. A: <input type="text" name="c4" placeholder="Complete the question"><br>B: I came to New York in 1998.</div>
+<div class="q">5. A: <input type="text" name="c5" placeholder="Complete the question"><br>B: It was a little scary.</div>
+</section>
+<section><h2>D. Pronouns and Prepositions</h2><p class="sub">Complete the conversations with the correct pronouns and prepositions.</p>
+<div class="q">1. A: Can I speak to Carl, please?<br>B: I'm sorry. He's <input class="inline" type="text" name="d1"> his break.</div>
+<div class="q">2. A: Hi. Are Lisa and Tom there?<br>B: Yes, but <input class="inline" type="text" name="d2a"> can't come to the phone — they're <input class="inline" type="text" name="d2b"> the yard.</div>
+<div class="q">3. A: Is Beth in, please?<br>B: No, she's <input class="inline" type="text" name="d3a"> the mall. Do you want to leave <input class="inline" type="text" name="d3b"> a message?</div>
+</section>
+<section><h2>E. Circle the Correct Words</h2>
+<div class="q">1. A: Do we have any food in the refrigerator?<br>B: No, we don't. I <select name="e1"><option value="">Choose...</option><option>'d like to</option><option>have to</option><option>want to</option></select> go to the supermarket.</div>
+<div class="q">2. A: What are you going to do tonight?<br>B: I have a test tomorrow. I <select name="e2"><option value="">Choose...</option><option>'d like to</option><option>'d love to</option><option>need to</option></select> study.</div>
+<div class="q">3. A: Let's see a movie.<br>B: I <select name="e3"><option value="">Choose...</option><option>'d like to</option><option>have to</option><option>need to</option></select>, but I can't.</div>
+<div class="q">4. A: Do you <select name="e4a"><option value="">Choose...</option><option>have to</option><option>need to</option><option>want to</option></select> come to a party at my house?<br>B: Thanks. I <select name="e4b"><option value="">Choose...</option><option>'d love to</option><option>have to</option><option>need to</option></select>!</div>
+</section>
+<section><h2>F. Reading — The First American Woman in Space</h2><p class="sub">Read the article. Then write questions for the answers.</p>
+<article><h3>The First American Woman in Space</h3>
+<p>Sally Ride was born on May 26, 1951, in Los Angeles, California. As a young girl, she wanted to be a tennis player, and she played tennis professionally as a teenager. She was a student at Stanford University and majored in English and physics. She finished college in 1977 and decided she wanted to be an astronaut. That year over 8,000 men and women wanted to enter the space program (NASA). Only 35 got in. Six were women, and one was Sally Ride.</p>
+<p>At NASA, Sally got a lot of training. In 1983, she took her first space flight, and became the first American woman in space. Sally Ride left NASA in 1987. She now teaches at Stanford University, and encourages other young women to study science and math.</p></article>
+<div class="q">1. <input type="text" name="f1" placeholder="Write the question"><br>In Los Angeles, California.</div>
+<div class="q">2. <input type="text" name="f2" placeholder="Write the question"><br>English and physics.</div>
+<div class="q">3. <input type="text" name="f3" placeholder="Write the question"><br>In 1987.</div>
+</section>
+<div class="actions"><button class="btn primary" type="submit">Submit Exam &amp; Grade</button><button class="btn secondary" type="button" id="resetBtn">Reset Answers</button></div>
+</form>
+<div id="results" aria-live="polite"><h2>Exam Results</h2><div id="score"></div><p id="summary"></p><div id="feedback"></div><button class="btn primary" type="button" id="downloadBtn">Download My Results (.txt)</button></div>
+</main><footer>CELESTE English School · Units 15–16 Quiz</footer>
+<script>
+const audioInput=document.getElementById('audioFile'),audio=document.getElementById('audio'),playCount=document.getElementById('playCount');let plays=0,audioUrl=null,playingAllowed=false;
+audioInput.addEventListener('change',()=>{const file=audioInput.files[0];if(!file)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(file);audio.src=audioUrl;audio.style.display='block';plays=0;playingAllowed=true;audio.controls=true;playCount.textContent='Plays used: 0 / 2';audio.load();});
+audio.addEventListener('play',()=>{if(!playingAllowed||plays>=2){audio.pause();return;}plays++;playCount.textContent='Plays used: '+plays+' / 2';});
+audio.addEventListener('ended',()=>{if(plays>=2){playingAllowed=false;audio.controls=false;playCount.textContent='Maximum two plays reached.';}});
+audio.addEventListener('seeking',()=>{if(audio.currentTime>0)audio.currentTime=0;});
+const key={
+a1:'on her break',a2:'help his parents',a3:'on vacation',a4:'go to bed early',
+b1:'missed',b2:'was',b3:"My parents weren't there.",b4:"It wasn't great.",
+c1:'Were your parents born in the U.S.?',c2:'Where did you grow up?',c3:'Who was your first English teacher?',c4:'When did you come to New York?',c5:'How was your first day in the U.S.?',
+d1:'on',d2a:'they',d2b:'in',d3a:'at',d3b:'her',
+e1:'have to',e2:'need to',e3:"'d like to",e4a:'want to',e4b:"'d love to",
+f1:'Where was Sally Ride born?',f2:'What did Sally Ride major in?',f3:'When did Sally Ride leave NASA?'
+};
+const normalize=s=>celesteNorm(s);const keys=Object.keys(key);let latestReport='';
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.getElementById('exam').addEventListener('submit',ev=>{ev.preventDefault();let earned=0,total=keys.length,items=[];
+keys.forEach(k=>{let el=document.querySelector('[name="'+k+'"]'),val=el?.value||'',ok=normalize(val)===normalize(key[k]);
+if(k==='b3')ok=/^my parents weren't there$/.test(normalize(val));
+if(k==='b4')ok=/^it wasn't great$/.test(normalize(val));
+if(k==='c1')ok=/^were your parents born in the us$/.test(normalize(val));
+if(k==='c3')ok=/^who was your first english teacher$/.test(normalize(val));
+if(k==='f1')ok=/^where was sally ride born$/.test(normalize(val));
+if(k==='f2')ok=/^what did sally ride major in$/.test(normalize(val));
+if(k==='f3')ok=/^when did sally ride leave nasa$/.test(normalize(val));
+if(ok)earned++;items.push({label:k.toUpperCase(),val:val||'(blank)',ans:key[k],ok});});
+const pct=Math.round(earned/total*100);document.getElementById('score').textContent=`${earned} / ${total} (${pct}%)`;document.getElementById('summary').textContent='Each blank or multiple-choice question is worth one point. Punctuation differences are ignored.';
+const box=document.getElementById('feedback');box.innerHTML='';items.forEach(r=>{const d=document.createElement('div');d.className='feedback';d.innerHTML=`<strong>${r.label}</strong>: ${esc(r.val)} — <span class="${r.ok?'correct':'incorrect'}">${r.ok?'Correct':'Incorrect'}</span><br><span class="small">Correct answer: ${esc(r.ans)}</span>`;box.appendChild(d);});
+latestReport=`CELESTE English School — Units 15–16 Quiz\nScore: ${earned}/${total} (${pct}%)\n\n`+items.map(r=>`${r.label}: ${r.val} | ${r.ok?'Correct':'Incorrect'} | Correct answer: ${r.ans}`).join('\n')+'\n';
+document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});});
+document.getElementById('downloadBtn').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([latestReport],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='units-15-16-quiz-results.txt';a.click();URL.revokeObjectURL(url);});
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Reset all answers and start again?')){document.getElementById('exam').reset();document.getElementById('results').style.display='none';plays=0;playingAllowed=false;audio.pause();audio.removeAttribute('src');audio.style.display='none';audio.controls=true;playCount.textContent='Audio has not been uploaded. Once uploaded, it can be played twice.';latestReport='';}});
+</script><style>.combined-nav{padding:9px 16px;background:#fff;border-bottom:1px solid #ddd;font:700 14px system-ui}.combined-nav a{color:#8e302d;text-decoration:none}.celeste-print-result{display:flex;align-items:center;justify-content:center;width:max-content;max-width:100%;margin:18px auto;padding:12px 18px;border:0;border-radius:9px;background:#8e302d;color:#fff;font-weight:800;cursor:pointer}@media print{.combined-nav,.celeste-print-result,button[type=submit],input[type=file],audio{display:none!important}body{background:#fff!important}}</style><script>document.addEventListener('DOMContentLoaded',function(){var a=document.querySelector('audio');if(a&&!a.getAttribute('src')){a.src='../audio/U15-16_A1.mp3';a.load();}var b=document.createElement('button');b.type='button';b.className='celeste-print-result';b.textContent='Print as PDF';b.hidden=true;b.onclick=function(){window.print()};document.body.appendChild(b);var f=document.querySelector('form');if(f)f.addEventListener('submit',function(){setTimeout(function(){b.hidden=false},200)});});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPath = '../audio/U15-16_A1.mp3';
+  const audio = document.getElementById('listeningAudio') || document.getElementById('audio');
+  if (audio) {
+    audio.src = audioPath;
+    audio.load();
+    audio.style.display = 'block';
+    audio.controls = !document.getElementById('playAudio');
+    const playBtn = document.getElementById('playAudio');
+    const status = document.getElementById('audioStatus') || document.getElementById('playCount');
+    if (playBtn) { playBtn.disabled = false; playBtn.textContent = '▶ Play audio (2 plays left)'; }
+    if (status) status.textContent = 'Audio path: ../audio/U15-16_A1.mp3';
+  }
+});
+</script>
+<style>
+/* CELESTE submitted-result panel */
+#result,#results{box-sizing:border-box;max-width:1000px;margin:28px auto;padding:clamp(20px,4vw,36px);background:#fff;border:1px solid #e6e8ee;border-radius:18px;box-shadow:0 12px 36px rgba(25,35,55,.09);color:#202638}
+#result h2,#results h2{margin:0 0 12px;color:#8e302d;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
+#scoreHeading,#score{display:block;margin:12px 0 20px;font-size:1.2rem;font-weight:800;color:#202638}
+#resultGrid,#feedback{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+#resultGrid .result-item,#feedback .feedback{box-sizing:border-box;padding:15px;border:1px solid #f0b7b7;border-left:5px solid #c94a4a;border-radius:12px;background:#fff8f8;line-height:1.55;overflow-wrap:anywhere}
+#resultGrid .result-item strong,#feedback .feedback strong{display:block;margin-bottom:5px;color:#9f2f2f}
+.celeste-print-result{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:22px auto 0;padding:13px 22px;border:0;border-radius:10px;background:#8e302d;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(142,48,45,.2)}
+.celeste-print-result:hover{background:#702421}
+@media(max-width:600px){#result,#results{margin:16px 8px;padding:18px;border-radius:14px}#resultGrid,#feedback{grid-template-columns:1fr}.celeste-print-result{width:max-content;max-width:100%;margin-left:auto;margin-right:auto}}
+@media print{body{background:#fff!important}#result,#results{max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none}#resultGrid,#feedback{display:block}#resultGrid .result-item,#feedback .feedback{break-inside:avoid;margin:0 0 10px}.combined-nav,.celeste-print-result,button,input[type=file],audio,footer{display:none!important}}
+</style>
+<script>
+(function(){
+ function setupResultView(){
+  const result=document.getElementById('result')||document.getElementById('results');
+  if(!result)return;
+  const heading=result.querySelector('h2');if(heading && heading.textContent!=='Exam submitted')heading.textContent='Exam submitted';
+  function cleanAndStyle(){
+   // Keep only incorrect / unanswered items; never reveal the answer key.
+   const grid=document.getElementById('resultGrid');
+   if(grid){[...grid.children].forEach(card=>{
+    const label=card.querySelector('strong');
+    if(label && /·\s*Correct\s*$/.test(label.textContent) && !/Incorrect/.test(label.textContent)){card.remove();return;}
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+   });}
+   const feedback=document.getElementById('feedback');
+   if(feedback){[...feedback.children].forEach(card=>{
+    if(card.querySelector('.correct')){card.remove();return;}
+    card.querySelectorAll('.small').forEach(el=>el.remove());
+    [...card.querySelectorAll('*')].forEach(el=>{if(el.children.length===0 && /^\s*Correct answer\s*:/i.test(el.textContent||''))el.remove();});
+    card.innerHTML=card.innerHTML.replace(/<br\s*\/?><span[^>]*>\s*Correct answer:[\s\S]*?<\/span>/gi,'');
+   });}
+   // Remove text-response downloads and secondary result actions.
+   result.querySelectorAll('#downloadBtn,button[id="editBtn"]').forEach(el=>el.remove());
+   // Some older pages put result actions in a shared action row.
+   result.querySelectorAll('.bottom-actions').forEach(row=>{if(!row.querySelector('button:not(.celeste-print-result)'))row.remove();});
+   // Keep exactly one PDF button in the submitted-result panel.
+   document.querySelectorAll('body > .celeste-print-result').forEach(el=>el.remove());
+   let printBtn=result.querySelector('.celeste-print-result');
+   if(!printBtn){printBtn=document.createElement('button');printBtn.type='button';printBtn.className='celeste-print-result';printBtn.textContent='Print as PDF';printBtn.addEventListener('click',()=>window.print());result.appendChild(printBtn);}
+   else {if(printBtn.textContent!=='Print as PDF')printBtn.textContent='Print as PDF';printBtn.hidden=false;}
+  }
+  // Wait until the original grading script has rendered its result.
+  const form=document.querySelector('form');if(form)form.addEventListener('submit',()=>setTimeout(cleanAndStyle,80));
+  const observer=new MutationObserver(()=>{if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();});
+  observer.observe(result,{childList:true,subtree:true});
+  if(result.style.display!=='none' && result.offsetHeight)cleanAndStyle();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupResultView);else setupResultView();
+})();
+</script>
+</body></html>
